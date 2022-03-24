@@ -291,8 +291,8 @@
 
             function backspace() {
                 if(currentLetter >= 1) {
-                    addLetter("");
-                    currentLetter -= 2;
+                    document.getElementById('row-' + currentRow + '-letter-' + (currentLetter-1)).innerText = '';
+                    currentLetter--;
                     if(currentLetter == 0) currentLetter = 1;
                 }
             }
@@ -308,7 +308,10 @@
                 for(var i = 1; i < 6; i++) {
                     word += document.getElementById('row-' + currentRow + '-letter-' + i).innerText;
                 }
-                if(!wordList.includes(word.toLowerCase())) alert('Not in word list');
+                if(!wordList.includes(word.toLowerCase())) {
+                    alert('Not in word list');
+                    return;
+                }
                 var result = submitWord(word);
                 if(result == 'ccccc' || currentRow == 6) {
                     setTimeout(function() {
