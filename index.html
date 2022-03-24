@@ -10,12 +10,13 @@
                 aspect-ratio: 1;
                 margin: 0;
                 margin-bottom: 0 !important;
-                flex-basis: 15%;
-                line-height: 1.5rem;
+                flex-basis: 17.5%;
+                line-height: 1rem;
                 font-size: 2rem;
                 text-align: center !important;
                 color: black;
                 overflow: hidden;
+                font-weight: bold;
             }
             .display-row {
                 display: flex;
@@ -41,7 +42,7 @@
                 </h1>
             </div>
             <div class="columns">
-                <div class="column is-offset-4-desktop is-4-desktop is-offset-2-tablet is-8-tablet">
+                <div class="column is-3-desktop is-8-tablet m-auto">
                     <div class="guess-display">
                         <div class="display-row" id="row-1">
                             <div class="box display-letter" id="row-1-letter-1"></div>
@@ -184,7 +185,7 @@
                 console.log('sum: ' + sum);
 
                 setRowColors(sum);
-                setTimeout(function() {currentRow++;currentLetter = 1;}, 1500);
+                setTimeout(function() {currentRow++;currentLetter = 1;}, 1000);
                 return sum;
             }
 
@@ -257,7 +258,7 @@
                     setTimeout(function() {
                         document.getElementById('result-modal').classList += ' is-active';
                         document.getElementById('correct-word').innerText = correctWord;
-                    }, 2500);
+                    }, 1500);
                 }
             }
 
