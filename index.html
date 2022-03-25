@@ -359,7 +359,7 @@
                 var otherDate = new Date() - (1000 * 3600 * 24);
                 if(date != null) otherDate = date;
                 var difference = Math.floor((otherDate - startDate) / (1000 * 3600 * 24));
-                return allAnswers[difference];
+                return allAnswers[difference+1];
             }
 
             function showDateModal() {
