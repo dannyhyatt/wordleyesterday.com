@@ -92,6 +92,7 @@
 
             #page-title {
                 max-height: 10vh;
+                margin-bottom: -18px;
             }
 
             .guess-display {
@@ -114,7 +115,47 @@
             }
 
             html {
-            height: -webkit-fill-available;
+                height: -webkit-fill-available;
+            }
+
+            ::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+            }
+
+            #down-arrow-icon {
+                stroke: #000;
+                fill: #000;
+                margin-left: 0.25rem;
+            }
+
+            .modal-content {
+                margin: 4rem;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                body, .title, .display-letter, .box, .modal-card-title {
+                    color: hsl(0, 0%, 96%) !important;
+                }
+                body {
+                    background-color: hsl(0, 0%, 14%);
+                }
+                .display-letter, .keyboard-key, .box {
+                    background-color: hsl(0, 0%, 21%);
+                }
+
+                .has-background-warning {
+                    background-color: #e9b421!important;
+                }
+                .has-background-grey-light {
+                    background-color: #797979!important;
+                }
+                .has-background-success {
+                    background-color: #07a860!important;
+                }
+                #down-arrow-icon, .keyboard-backspace svg {
+                    stroke: #fff;
+                    fill: #fff;
+                }
             }
         </style>
     </head>
@@ -122,14 +163,25 @@
 
         <div class="header">
             <h1 class="title has-text-centered" id="page-title">
-                Wordle Yesterday
+                Wordle Yesterday 
+                <a href="javascript:showOptionsModal()">
+                    <svg id='down-arrow-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 256 256" xml:space="preserve">
+                    <defs>
+                    </defs>
+                    <g transform="translate(128 128) scale(0.72 0.72)">
+                        <g style="stroke-width: 8; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill-rule: nonzero; opacity: 1;" transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)" >
+                        <path d="M 90 24.25 c 0 -0.896 -0.342 -1.792 -1.025 -2.475 c -1.366 -1.367 -3.583 -1.367 -4.949 0 L 45 60.8 L 5.975 21.775 c -1.367 -1.367 -3.583 -1.367 -4.95 0 c -1.366 1.367 -1.366 3.583 0 4.95 l 41.5 41.5 c 1.366 1.367 3.583 1.367 4.949 0 l 41.5 -41.5 C 89.658 26.042 90 25.146 90 24.25 z" style="stroke-width: 8; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    </g>
+                    </g>
+                    </svg>
+                </a>
             </h1>
         </div>
 
         <section class="section py-0">
-            <div class="columns">
+            <div class="columns mb-0">
                 <div class="column m-auto">
-                    <div class="guess-display">
+                    <div class="guess-display mb-0">
                         <div class="display-row" id="row-1">
                             <div class="box display-letter" id="row-1-letter-1"></div>
                             <div class="box display-letter" id="row-1-letter-2"></div>
@@ -207,6 +259,22 @@
                             </a>
                         <button onclick="showDateModal()" class="button is-info my-1 mr-1">
                             Play Again For a Different Day <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"/></svg>
+                        </button>
+                        <a class="button is-info my-1 mr-1" href="javascript:navigateToRandom()">
+                            Play With a Random Word <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M424.1 287c-15.13-15.12-40.1-4.426-40.1 16.97V352H336L153.6 108.8C147.6 100.8 138.1 96 128 96H32C14.31 96 0 110.3 0 128s14.31 32 32 32h80l182.4 243.2C300.4 411.3 309.9 416 320 416h63.97v47.94c0 21.39 25.86 32.12 40.99 17l79.1-79.98c9.387-9.387 9.387-24.59 0-33.97L424.1 287zM336 160h47.97v48.03c0 21.39 25.87 32.09 40.1 16.97l79.1-79.98c9.387-9.391 9.385-24.59-.0013-33.97l-79.1-79.98c-15.13-15.12-40.99-4.391-40.99 17V96H320c-10.06 0-19.56 4.75-25.59 12.81L254 162.7L293.1 216L336 160zM112 352H32c-17.69 0-32 14.31-32 32s14.31 32 32 32h96c10.06 0 19.56-4.75 25.59-12.81l40.4-53.87L154 296L112 352z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="options-modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <p class="modal-card-title mb-4">Options</p>
+                        <p id="result-grid"></p>
+                        <button onclick="showDateModal()" class="button is-info my-1 mr-1">
+                            Play For a Different Day <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"/></svg>
                         </button>
                         <a class="button is-info my-1 mr-1" href="javascript:navigateToRandom()">
                             Play With a Random Word <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M424.1 287c-15.13-15.12-40.1-4.426-40.1 16.97V352H336L153.6 108.8C147.6 100.8 138.1 96 128 96H32C14.31 96 0 110.3 0 128s14.31 32 32 32h80l182.4 243.2C300.4 411.3 309.9 416 320 416h63.97v47.94c0 21.39 25.86 32.12 40.99 17l79.1-79.98c9.387-9.387 9.387-24.59 0-33.97L424.1 287zM336 160h47.97v48.03c0 21.39 25.87 32.09 40.1 16.97l79.1-79.98c9.387-9.391 9.385-24.59-.0013-33.97l-79.1-79.98c-15.13-15.12-40.99-4.391-40.99 17V96H320c-10.06 0-19.56 4.75-25.59 12.81L254 162.7L293.1 216L336 160zM112 352H32c-17.69 0-32 14.31-32 32s14.31 32 32 32h96c10.06 0 19.56-4.75 25.59-12.81l40.4-53.87L154 296L112 352z"/></svg>
@@ -416,7 +484,9 @@
             }
 
             function showDateModal() {
-                document.getElementById('date-picker').value = new Date();
+                document.getElementById('date-picker').valueAsDate = new Date();
+                if(window.location.hash != '' && window.location.hash != '#random') 
+                    document.getElementById('date-picker').valueAsDate = new Date(window.location.hash.replace('#', ''));
                 document.getElementById('date-picker-modal').classList+=' is-active';
             }
 
@@ -431,6 +501,10 @@
             function navigateToRandom() {
                 window.location.href = '#random';
                 window.location.reload();
+            }
+
+            function showOptionsModal() {
+                document.getElementById('options-modal').classList+=' is-active';
             }
         </script>
     </body>
