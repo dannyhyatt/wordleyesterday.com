@@ -8,9 +8,7 @@
         <style>
             .display-letter {
                 aspect-ratio: 1;
-                margin: 0;
-                margin-left: 1vh;
-                margin-right: 1vh;
+                margin: 0 max(2px, 0.5vh);
                 margin-bottom: 0 !important;
                 /* flex-basis: 17.5%; */
                 height: 8vh;
@@ -30,7 +28,7 @@
             .display-row {
                 display: flex;
                 justify-content: center;
-                margin-bottom: 2vh;
+                margin-bottom: 1vh;
             }
             .guess-display {
                 margin: 2vh auto;
@@ -87,17 +85,27 @@
 
             .keyboard {
                 min-height: 10vh;
+                max-height: 20vh;
+                max-width: 95%;
+            }
+
+            body {
+                display: flex;
+                height: 100vh;
+                flex-direction: column;
+                justify-content: space-evenly;
             }
         </style>
     </head>
     <body>
 
+        <div class="header">
+            <h1 class="title has-text-centered" id="page-title">
+                Wordle Yesterday
+            </h1>
+        </div>
+        
         <section class="section py-0">
-            <div class="header my-4">
-                <h1 class="title has-text-centered my-1" id="page-title">
-                    Wordle Yesterday
-                </h1>
-            </div>
             <div class="columns">
                 <div class="column m-auto">
                     <div class="guess-display">
@@ -186,55 +194,53 @@
                 </div>
             </div>
 
-                <div class="modal" id="date-picker-modal">
-                    <div class="modal-background"></div>
-                    <div class="modal-content">
-                        <div class="box">
-                            <p class="modal-card-title">Choose the date:</p>
-                            <input type="date" class="button is-info my-2" id="date-picker">
-                            <a class="button is-info my-2" href="javascript:navigateToDate()">Play ></a>
-                        </div>
+            <div class="modal" id="date-picker-modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <p class="modal-card-title">Choose the date:</p>
+                        <input type="date" class="button is-info my-2" id="date-picker">
+                        <a class="button is-info my-2" href="javascript:navigateToDate()">Play ></a>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
         <div class="columns">
-            <div class="column is-4-desktop is-5-tablet m-auto p-0">
-                <div class="keyboard">
-                    <div class="keyboard-row">
-                        <div class="keyboard-key key-Q" onclick="addLetter('Q')">Q</div>
-                        <div class="keyboard-key key-W" onclick="addLetter('W')">W</div>
-                        <div class="keyboard-key key-E" onclick="addLetter('E')">E</div>
-                        <div class="keyboard-key key-R" onclick="addLetter('R')">R</div>
-                        <div class="keyboard-key key-T" onclick="addLetter('T')">T</div>
-                        <div class="keyboard-key key-Y" onclick="addLetter('Y')">Y</div>
-                        <div class="keyboard-key key-U" onclick="addLetter('U')">U</div>
-                        <div class="keyboard-key key-I" onclick="addLetter('I')">I</div>
-                        <div class="keyboard-key key-O" onclick="addLetter('O')">O</div>
-                        <div class="keyboard-key key-P" onclick="addLetter('P')">P</div>
-                    </div>
-                    <div class="keyboard-row">
-                        <div class="keyboard-key key-A" onclick="addLetter('A')">A</div>
-                        <div class="keyboard-key key-S" onclick="addLetter('S')">S</div>
-                        <div class="keyboard-key key-D" onclick="addLetter('D')">D</div>
-                        <div class="keyboard-key key-F" onclick="addLetter('F')">F</div>
-                        <div class="keyboard-key key-G" onclick="addLetter('G')">G</div>
-                        <div class="keyboard-key key-H" onclick="addLetter('H')">H</div>
-                        <div class="keyboard-key key-J" onclick="addLetter('J')">J</div>
-                        <div class="keyboard-key key-K" onclick="addLetter('K')">K</div>
-                        <div class="keyboard-key key-L" onclick="addLetter('L')">L</div>
-                    </div>
-                    <div class="keyboard-row">
-                        <div class="keyboard-key keyboard-enter" onclick="checkWord()">Enter</div>
-                        <div class="keyboard-key key-Z" onclick="addLetter('Z')">Z</div>
-                        <div class="keyboard-key key-X" onclick="addLetter('X')">X</div>
-                        <div class="keyboard-key key-C" onclick="addLetter('C')">C</div>
-                        <div class="keyboard-key key-V" onclick="addLetter('V')">V</div>
-                        <div class="keyboard-key key-B" onclick="addLetter('B')">B</div>
-                        <div class="keyboard-key key-N" onclick="addLetter('N')">N</div>
-                        <div class="keyboard-key key-M" onclick="addLetter('M')">M</div>
-                        <div class="keyboard-key keyboard-backspace" onclick="backspace()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z"/></svg></div>
-                    </div>
+            <div class="column m-auto p-0 keyboard">
+                <div class="keyboard-row">
+                    <div class="keyboard-key key-Q" onclick="addLetter('Q')">Q</div>
+                    <div class="keyboard-key key-W" onclick="addLetter('W')">W</div>
+                    <div class="keyboard-key key-E" onclick="addLetter('E')">E</div>
+                    <div class="keyboard-key key-R" onclick="addLetter('R')">R</div>
+                    <div class="keyboard-key key-T" onclick="addLetter('T')">T</div>
+                    <div class="keyboard-key key-Y" onclick="addLetter('Y')">Y</div>
+                    <div class="keyboard-key key-U" onclick="addLetter('U')">U</div>
+                    <div class="keyboard-key key-I" onclick="addLetter('I')">I</div>
+                    <div class="keyboard-key key-O" onclick="addLetter('O')">O</div>
+                    <div class="keyboard-key key-P" onclick="addLetter('P')">P</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="keyboard-key key-A" onclick="addLetter('A')">A</div>
+                    <div class="keyboard-key key-S" onclick="addLetter('S')">S</div>
+                    <div class="keyboard-key key-D" onclick="addLetter('D')">D</div>
+                    <div class="keyboard-key key-F" onclick="addLetter('F')">F</div>
+                    <div class="keyboard-key key-G" onclick="addLetter('G')">G</div>
+                    <div class="keyboard-key key-H" onclick="addLetter('H')">H</div>
+                    <div class="keyboard-key key-J" onclick="addLetter('J')">J</div>
+                    <div class="keyboard-key key-K" onclick="addLetter('K')">K</div>
+                    <div class="keyboard-key key-L" onclick="addLetter('L')">L</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="keyboard-key keyboard-enter" onclick="checkWord()">Enter</div>
+                    <div class="keyboard-key key-Z" onclick="addLetter('Z')">Z</div>
+                    <div class="keyboard-key key-X" onclick="addLetter('X')">X</div>
+                    <div class="keyboard-key key-C" onclick="addLetter('C')">C</div>
+                    <div class="keyboard-key key-V" onclick="addLetter('V')">V</div>
+                    <div class="keyboard-key key-B" onclick="addLetter('B')">B</div>
+                    <div class="keyboard-key key-N" onclick="addLetter('N')">N</div>
+                    <div class="keyboard-key key-M" onclick="addLetter('M')">M</div>
+                    <div class="keyboard-key keyboard-backspace" onclick="backspace()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z"/></svg></div>
                 </div>
             </div>
         </div>
