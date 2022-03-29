@@ -5,6 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <title>Wordle Yesterday</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+        <!-- adverts stuff -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4715168318682417"
+        crossorigin="anonymous"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE6SFBW9HP"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-QE6SFBW9HP');
+        </script>
+
         <style>
             .display-letter {
                 aspect-ratio: 1;
@@ -60,6 +74,7 @@
                 justify-content: center;
                 display: flex;
                 flex-direction: column;
+                max-width: 3.5rem;
 
                 cursor: pointer;
                 user-select: none;
@@ -91,9 +106,15 @@
 
             body {
                 display: flex;
-                height: 100vh;
+                min-height: 100vh;
+                /* mobile viewport bug fix */
+                min-height: -webkit-fill-available;
                 flex-direction: column;
                 justify-content: space-evenly;
+            }
+
+            html {
+            height: -webkit-fill-available;
             }
         </style>
     </head>
@@ -104,7 +125,7 @@
                 Wordle Yesterday
             </h1>
         </div>
-        
+
         <section class="section py-0">
             <div class="columns">
                 <div class="column m-auto">
@@ -206,9 +227,9 @@
             </div>
         </section>
 
-        <div class="columns">
+        <div class="columns m-0">
             <div class="column m-auto p-0 keyboard">
-                <div class="keyboard-row">
+                <div class="keyboard-row mt-0">
                     <div class="keyboard-key key-Q" onclick="addLetter('Q')">Q</div>
                     <div class="keyboard-key key-W" onclick="addLetter('W')">W</div>
                     <div class="keyboard-key key-E" onclick="addLetter('E')">E</div>
@@ -411,18 +432,6 @@
                 window.location.href = '#random';
                 window.location.reload();
             }
-        </script>
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4715168318682417"
-        crossorigin="anonymous"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE6SFBW9HP"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-QE6SFBW9HP');
         </script>
     </body>
 </html>
